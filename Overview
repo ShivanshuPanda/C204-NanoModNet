@@ -1,0 +1,66 @@
+# C204-NanoModNet
+
+## Overview
+
+RNA modifications are chemical changes that occur on RNA molecules and affect how genes are expressed. Detecting these modifications is essential for understanding various biological processes and diseases.
+
+## Objective
+
+To develop a working neural network model that:
+
+- Takes raw (or simulated) Nanopore signal data as input
+- Predicts whether an RNA base is modified or not
+- Visualizes model performance using standard metrics
+- Runs entirely in Google Colab with no special setup
+
+C204-NanoModNet is a deep learning-based model that predicts RNA modification sites directly from Nanopore sequencing signal data. It simulates how real lab experiments might be analyzed using AI — combining bioinformatics with neural networks.
+
+## Model Architecture
+
+| Layer               | Type             | Description                                   |
+|---------------------|------------------|-----------------------------------------------|
+| 1                   | Conv1D           | Extracts local features from raw signals      |
+| 2                   | MaxPooling1D     | Reduces signal length for efficiency           |
+| 3                   | Conv1D           | Learns higher-order signal patterns            |
+| 4                   | MaxPooling1D     | Further compression                            |
+| 5                   | Bidirectional LSTM | Captures sequence context in both directions  |
+| 6                   | Dense (64)       | Fully connected layer with dropout             |
+| 7                   | Dense (1)        | Final output (binary classification)           |
+
+Total Parameters: ~84,865
+
+## Data Preprocessing
+
+- Input signals are simulated/sourced from public RNA Nanopore datasets
+- Signals are normalized (zero mean, unit variance) per sample
+- Labels represent whether a given signal contains a modification or not
+
+## Results
+
+- Model trained for 10 epochs
+- Accuracy varied between 50%–85% depending on simulation
+- ROC-AUC visualizations show general learning behavior
+- Confusion matrix helps visualize true/false predictions
+
+## Evaluation Metrics
+
+- Accuracy
+- Precision / Recall / F1 Score
+- Confusion Matrix
+- ROC Curve and AUC
+
+## Model Deployment
+
+- Model saved in `.keras` format
+- Can be reloaded for prediction without retraining
+- Accepts new signals as input for inference
+
+## Limitations
+
+- Synthetic signal data may not fully match biological complexity
+- More training epochs and real datasets would improve accuracy
+- Future versions could add attention or transformer layers
+
+## Conclusion
+
+C204-NanoModNet is a functional prototype demonstrating how deep learning can assist in RNA modification prediction from raw signal data. It provides a foundation for building advanced bioinformatics tools and enables further exploration in AI-powered RNA research.
